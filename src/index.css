@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom styles for blog content */
+.prose {
+  max-width: none;
+}
+
+.prose p {
+  margin-bottom: 1.25em;
+  line-height: 1.7;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-weight: 600;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

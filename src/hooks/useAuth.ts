@@ -1,40 +1,46 @@
 import { useState, useEffect } from 'react'
-import { User } from '@supabase/supabase-js'
-import { supabase } from '@/lib/supabase'
+
+interface User {
+  id: string
+  email: string
+  name: string
+  role: string
+}
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null)
-      setLoading(false)
-    })
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null)
-        setLoading(false)
-      }
-    )
-
-    return () => subscription.unsubscribe()
+    // Check for existing session
+    const savedUser = localStorage.getItem('admin_user')
+    if (savedUser) {
+      setUser(JSON.parse(savedUser))
+    }
+    setLoading(false)
   }, [])
 
   const signIn = async (email: string, password: string) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-    return { data, error }
+    // Mock authentication - in real app, use Supabase
+    if (email === 'admin@asa.ma' && password === 'admin123') {
+      const mockUser = {
+        id: '1',
+        email: 'admin@asa.ma',
+        name: 'Admin User',
+        role: 'admin'
+      }
+      setUser(mockUser)
+      localStorage.setItem('admin_user', JSON.stringify(mockUser))
+      return { data: mockUser, error: null }
+    } else {
+      return { data: null, error: { message: 'Invalid credentials' } }
+    }
   }
 
   const signOut = async () => {
-    const { error } = await supabase.auth.signOut()
-    return { error }
+    setUser(null)
+    localStorage.removeItem('admin_user')
+    return { error: null }
   }
 
   return {
