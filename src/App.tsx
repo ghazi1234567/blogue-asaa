@@ -24,6 +24,9 @@ import { AdminMedia } from '@/pages/Admin/AdminMedia'
 import { AdminSEO } from '@/pages/Admin/AdminSEO'
 import { AdminSettings } from '@/pages/Admin/AdminSettings'
 import { AdminLogin } from '@/pages/Admin/AdminLogin'
+import { AdminAnalytics } from '@/pages/Admin/AdminAnalytics'
+import { AdminAppearance } from '@/pages/Admin/AdminAppearance'
+import { AdminSecurity } from '@/pages/Admin/AdminSecurity'
 
 import { useAuth } from '@/hooks/useAuth'
 
@@ -85,6 +88,9 @@ function AdminRoutes() {
         <Route path="comments" element={<AdminComments />} />
         <Route path="media" element={<AdminMedia />} />
         <Route path="seo" element={<AdminSEO />} />
+        <Route path="analytics" element={<AdminAnalytics />} />
+        <Route path="appearance" element={<AdminAppearance />} />
+        <Route path="security" element={<AdminSecurity />} />
         <Route path="settings" element={<AdminSettings />} />
       </Routes>
     </AdminLayout>

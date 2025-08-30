@@ -68,7 +68,8 @@ export function AdminSidebar() {
       {/* Navigation */}
       <nav className="flex-1 space-y-1 px-4 py-6">
         {navigation.map((item) => {
-          const isActive = location.pathname === item.href
+          const isActive = location.pathname === item.href || 
+            (item.href === '/admin' && location.pathname === '/admin/')
           return (
             <Link
               key={item.name}
