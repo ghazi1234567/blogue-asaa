@@ -1,6 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trophy, Users, Calendar, Award } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 
 const teamMembers = [
   {
